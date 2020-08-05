@@ -5,7 +5,7 @@ import { BatchService } from 'src/app/services/batch/batch.service';
 import { environment } from 'src/environments/environment';
 import { Direction, Sorter, TableDto, Operator } from '../../components/table';
 import { TableUtils } from '../../components/table/table-utils';
-import { BatchColumn, IBatch } from '../../models/batch.model';
+import { BatchColumn, IBatch, BatchStatus } from '../../models/batch.model';
 import { Filter } from 'src/app/components/table/filter';
 import { BatchType } from 'src/app/enums/batch-type';
 
@@ -48,8 +48,13 @@ export class BatchHandlerComponent implements OnInit, OnDestroy {
 
     setTimeout(() => {
       const container = new TableDto();
-      const audits: IBatch[] = [
-        { id: 1, casZalozeni: '123', duvodZmenyStavu: 'test', pocet: 1, pozastaveno: false, stav: 'asd', typ: BatchType.DUP }
+      const audits: object[] = [
+        { id: 1, cislo: '1rrfxvsd89sa', casZalozeni: '08/01/2020', duvodZmenyStavu: 'test', pocet: 718, pozastaveno: false, stav: BatchStatus.PREVZATA, typ: BatchType.ESF },
+        { id: 2, cislo: 'ar7fxvsd89sa', casZalozeni: '08/02/2020', duvodZmenyStavu: 'test', pocet: 644, pozastaveno: true, stav: BatchStatus.PREVZATA, typ: BatchType.DUP },
+        { id: 3, cislo: 'grrf8vsd89sa', casZalozeni: '08/03/2020', duvodZmenyStavu: 'test', pocet: 644, pozastaveno: true, stav: BatchStatus.PREVZATA, typ: BatchType.DUP },
+        { id: 4, cislo: 'vrrfxvsd89sa', casZalozeni: '08/04/2020', duvodZmenyStavu: 'test', pocet: 644, pozastaveno: true, stav: BatchStatus.CHYBA_POLE, typ: BatchType.DUP },
+        { id: 5, cislo: 'hrr6xvsd89sa', casZalozeni: '08/05/2020', duvodZmenyStavu: 'test', pocet: 644, pozastaveno: true, stav: BatchStatus.PREVZATA, typ: BatchType.DUP },
+        { id: 6, cislo: 'rrrfxv4d89sa', casZalozeni: '08/06/2020', duvodZmenyStavu: 'test', pocet: 644, pozastaveno: true, stav: BatchStatus.ZALOZENA, typ: BatchType.DUP }
       ];
       container.items = audits;
       this.tableDto = container;

@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from 'src/app/services/configuration/configuration.service';
 import { ConfigurationUtils } from 'src/app/components/configuration/configuration-utils';
 import { IConfiguration } from 'src/app/models/configuration.model';
+import { BatchType } from 'src/app/enums/batch-type';
+import { BatchStatus } from 'src/app/models/batch.model';
 
 @Component({
   selector: 'app-configuration-handler',
@@ -28,8 +30,11 @@ export class ConfigurationHandlerComponent implements OnInit {
 
     setTimeout(() => {
       const container: IConfiguration = {
-        autoStart: [],
-        manualStart: [],
+        autoStart: [{ batchType: BatchType.ESF, jobType: BatchStatus.CHYBA_PREDANI }],
+        manualStart: [
+          { batchType: BatchType.ESF, jobType: BatchStatus.ZALOZENA },
+          { batchType: BatchType.DUP, jobType: BatchStatus.CHYBA_POLE }
+        ],
         qualityCheck: {
           akceptacniKriteria: { CK: 20, N: 20, S: 20, V: 20, VV: 20 },
           celyVzorek: true,
