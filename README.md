@@ -18,3 +18,13 @@
 ## Nastaveni
 
 ![nastaveni](assets/nastaveni.png "Nastaveni")
+
+## Run
+
+```
+npm install
+```
+
+```
+ng serve
+```
