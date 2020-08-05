@@ -1,0 +1,52 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="table-filter">
+    <div class="batch-filter-checkbox">
+      <!-- checkbox nezpracovane -->
+      <mat-checkbox class="cb-not-processed" formControlName="isNotProcessed">Nezpracované
+      </mat-checkbox>
+
+      <!-- checkbox pozastavene -->
+      <mat-checkbox class="cb-paused" formControlName="isPaused">Pozastavené
+      </mat-checkbox>
+    </div>
+
+    <div>
+      <!-- combobox typ davky -->
+      <mat-form-field class="mx-2">
+        <mat-label>Typ auditu</mat-label>
+        <mat-select formControlName="batchType">
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let option of batchOptions" [value]="option.value">
+            {{option.text}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- date od -->
+      <mat-form-field class="mx-2">
+        <mat-label>Od</mat-label>
+        <input matInput [matDatepicker]="dateFrom" formControlName="dateFrom">
+        <mat-error *ngIf="hasError(form, 'dateFrom')">
+          {{getFirstError(form, 'dateFrom') | transloco}}
+        </mat-error>
+        <mat-datepicker-toggle matSuffix [for]="dateFrom"></mat-datepicker-toggle>
+        <mat-datepicker #dateFrom></mat-datepicker>
+      </mat-form-field>
+
+      <!-- date do -->
+      <mat-form-field class="mx-2">
+        <mat-label>Do</mat-label>
+        <input matInput [matDatepicker]="pickerUntil" formControlName="dateTo">
+        <mat-error *ngIf="hasError(form, 'dateTo')">
+          {{getFirstError(form, 'dateTo') | transloco}}
+        </mat-error>
+        <mat-datepicker-toggle matSuffix [for]="pickerUntil"></mat-datepicker-toggle>
+        <mat-datepicker #pickerUntil></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!isValid(form)">Filtrovat</button>
+    </div>
+  </div>
+</form>

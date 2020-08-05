@@ -1,0 +1,10 @@
+{
+  "/user/*/activate": "/activate",
+  "/user/*/verify": "/verify",
+  "/user/*/set-password": "/set-password",
+  "/user/*": "/$1",
+  "/admin/*": "/$1",
+  "/voters/": "/voters",
+  "/batches/": "/batches",
+  "/configuration/": "/configuration"
+}

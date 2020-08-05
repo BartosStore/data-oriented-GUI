@@ -1,0 +1,108 @@
+$spacer: 1rem;
+
+$spacers: (
+  0: 0,
+  1: ($spacer * .25),
+  2: ($spacer * .5),
+  3: $spacer,
+  4: ($spacer * 1.5),
+  5: ($spacer * 3),
+);
+
+@mixin margin($spacers, $direction) {
+  @each $size, $value in $spacers {
+    @if $direction == top {
+      .mt-#{$size} {
+        margin-top: $value;
+      }
+    }
+
+    @if $direction == bottom {
+      .mb-#{$size} {
+        margin-bottom: $value;
+      }
+    }
+
+    @if $direction == left {
+      .ml-#{$size} {
+        margin-left: $value;
+      }
+    }
+
+    @if $direction == right {
+      .mr-#{$size} {
+        margin-right: $value;
+      }
+    }
+
+    @if $direction == x {
+      .mx-#{$size} {
+        margin-left: $value;
+        margin-right: $value;
+      }
+    }
+
+    @if $direction == y {
+      .my-#{$size} {
+        margin-top: $value;
+        margin-bottom: $value;
+      }
+    }
+  }
+}
+
+@mixin padding($spacers, $direction) {
+  @each $size, $value in $spacers {
+    @if $direction == top {
+      .pt-#{$size} {
+        padding-top: $value;
+      }
+    }
+
+    @if $direction == bottom {
+      .pb-#{$size} {
+        padding-bottom: $value;
+      }
+    }
+
+    @if $direction == left {
+      .pl-#{$size} {
+        padding-left: $value;
+      }
+    }
+
+    @if $direction == right {
+      .pr-#{$size} {
+        padding-bottom: $value;
+      }
+    }
+
+    @if $direction == x {
+      .px-#{$size} {
+        padding-left: $value;
+        padding-right: $value;
+      }
+    }
+
+    @if $direction == y {
+      .py-#{$size} {
+        padding-top: $value;
+        padding-bottom: $value;
+      }
+    }
+  }
+}
+
+@include margin($spacers, 'top');
+@include margin($spacers, 'bottom');
+@include margin($spacers, 'left');
+@include margin($spacers, 'right');
+@include margin($spacers, 'x');
+@include margin($spacers, 'y');
+
+@include padding($spacers, 'top');
+@include padding($spacers, 'bottom');
+@include padding($spacers, 'left');
+@include padding($spacers, 'right');
+@include padding($spacers, 'x');
+@include padding($spacers, 'y');

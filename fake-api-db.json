@@ -1,0 +1,117 @@
+{
+  "batches": {
+    "paging": {
+      "page": 1,
+      "size": 10,
+      "total": 4
+    },
+    "sorters": [{
+      "column": "CasZalozeni",
+      "direction": "DESC"
+    }],
+    "filters": [],
+    "items": [{
+        "id": 1,
+        "stav": null,
+        "cislo": "Davka 1",
+        "casZalozeni": null,
+        "pocet": 2,
+        "typ": "TP"
+      },
+      {
+        "id": 2,
+        "stav": null,
+        "cislo": "Davka 2",
+        "casZalozeni": null,
+        "pocet": 0,
+        "typ": "TP"
+      },
+      {
+        "id": 1,
+        "stav": null,
+        "cislo": "Davka 1",
+        "casZalozeni": null,
+        "pocet": 0,
+        "typ": "ONL"
+      },
+      {
+        "id": 2,
+        "stav": null,
+        "cislo": "Davka 2",
+        "casZalozeni": null,
+        "pocet": 0,
+        "typ": "ONL"
+      }
+    ]
+  },
+  "configuration": {
+    "response": "response_content",
+    "configRecordManuals": [{
+        "batch": "incomeLSF",
+        "batchActivity": "digitalizationQualityCheck"
+      },
+      {
+        "batch": "incomeESF",
+        "batchActivity": "dataValidation"
+      }
+    ],
+    "configRecordAutomats": [{
+        "batch": "housesFlatsData",
+        "batchActivity": "batchDownload"
+      },
+      {
+        "batch": "housesFlatsData",
+        "batchActivity": "dataSaving"
+      }
+    ],
+    "qualityControlParams": {
+      "barcode": 0.05,
+      "low": 0.7,
+      "medium": 1.2,
+      "high": 3.2,
+      "veryHigh": 5.2,
+      "controlledSampleInPercentages": 0.5,
+      "controlledSampleInPages": 50,
+      "isAlwaysFinishBatchEnabled": false
+    }
+  },
+  "login": {
+    "id": "1",
+    "email": "test@example.com",
+    "token": "#123"
+  },
+  "check-logged": {
+    "id": "1",
+    "email": "test@example.com",
+    "token": "#123"
+  },
+  "logout": {},
+  "reset-password": {},
+  "activate": {
+    "email": "test@example.com",
+    "token": "#123"
+  },
+  "verify": {
+    "email": "test@example.com",
+    "token": "#123"
+  },
+  "set-password": {},
+  "change-password": {},
+  "users": [{
+    "id": "1",
+    "email": "test@example.com"
+  }],
+  "users-grid": {
+    "items": [{
+      "id": "1",
+      "email": "test@example.com"
+    }],
+    "paging": {
+      "page": 1,
+      "itemsPerPage": 10
+    },
+    "sorter": null,
+    "search": null,
+    "filter": []
+  }
+}

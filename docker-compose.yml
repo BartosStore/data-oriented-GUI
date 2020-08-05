@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  fake-api:
+    image: clue/json-server
+    volumes:
+      - ./fake-api-db.json:/data/db.json
+      - ./fake-api-routes.json:/data/routes.json
+    ports:
+      - 80:80
+    entrypoint: json-server /data/db.json --routes /data/routes.json -p 80
+
+  postgres-db:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_DB: admin
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: adminpwd
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 5433:8080
+
+  api:
+    image: app-be:develop
+    environment:
+      DB_DSN: jdbc:postgresql://postgres-db:5432/admin
+      DB_USER: admin
+      DB_PASS: adminpwd
+      KEYCLOAK_URL: http://localhost.com
+      CORS: '*'
+      LFS_URL: http://localhost.com
+    ports:
+      - 8090:8080

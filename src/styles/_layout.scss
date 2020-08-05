@@ -1,0 +1,16 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.content-wrapper {
+  flex: 1 0 auto;
+  .content-inner {
+    padding: 1rem;
+  }
+}
+.footer-wrapper {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+}

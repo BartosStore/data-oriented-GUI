@@ -1,0 +1,22 @@
+table {
+  width: 100%;
+}
+
+.table-filter {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+}
+
+.table-progress-bar {
+  height: 4px;
+  width: 100%;
+}
+
+.mat-cell, .mat-header-cell {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}

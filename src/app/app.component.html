@@ -1,0 +1,24 @@
+<div class="content-wrapper">
+  <mat-toolbar color="primary" class="toolbar-nav-wrapper">
+    <div class="toolbar-nav">
+      <a class="mr-3 app-link" routerLink="/">DataGUI</a>
+
+      <button mat-button routerLink="/batch" routerLinkActive="active-item">Audit</button>
+      <button mat-button routerLink="/configuration" routerLinkActive="active-item">Nastavení</button>
+    </div>
+
+    <div class="toolbar-user">
+      <div class="mat-body">{{username}}</div>
+      <button mat-icon-button (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+  <div class="content-inner">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<div class="footer-wrapper text-center">
+  © 2020 data.gui.com
+</div>

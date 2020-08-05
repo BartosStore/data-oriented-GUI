@@ -1,0 +1,36 @@
+// Fix sticky footer
+:host {
+  display: flex;
+  min-height: 100%; // used percent instead of vh due to safari bug.
+  flex-direction: column;
+}
+
+.toolbar-nav-wrapper {
+  justify-content: space-between;
+
+  .toolbar-nav {
+    height: 100%;
+
+    .app-link {
+      color: white;
+      text-decoration: none;
+    }
+
+    button {
+      height: 100%;
+      border-radius: 0;
+    }
+
+    .active-item {
+      border-bottom: 2px solid white;
+    }
+  }
+
+  .toolbar-user {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+}

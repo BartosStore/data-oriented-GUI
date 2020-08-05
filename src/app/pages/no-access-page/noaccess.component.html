@@ -1,0 +1,9 @@
+<div class="text-center">
+  <span *ngIf="url; else nourl">
+    Nemáte dostatečná oprávnění pro zobrazení: <span class="bold">/{{url}}</span>
+  </span>
+  <ng-template #nourl>
+    <mat-icon>home</mat-icon> <a routerLink="/"> Domovská stránka aplikace</a>
+  </ng-template>
+</div>
+

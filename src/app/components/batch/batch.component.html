@@ -1,0 +1,96 @@
+<mat-card class="card-container">
+  <mat-card-header>
+    <mat-card-title>Audit</mat-card-title>
+    <mat-card-subtitle>Seznam odebíraných dat včetně možnosti filtrování, sortování a stránkování.</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-actions>
+    <app-batch-filter [submitForm]="onChangeFilter"></app-batch-filter>
+  </mat-card-actions>
+
+  <mat-card-content>
+    <div>
+      <div class="table-progress-bar">
+        <mat-progress-bar *ngIf="tableLoading" mode="indeterminate"></mat-progress-bar>
+      </div>
+      <table mat-table [dataSource]="tableDto.items" matSort matSortDisableClear matSortStart="desc" [matSortActive]="tableDto.sorter ? tableDto.sorter.column : ''" [matSortDirection]="tableDto.sorter ? tableDto.sorter.matDirection : 'desc'" (matSortChange)=onChangeSort($event)>
+        <ng-container [matColumnDef]="SELECTION_ID">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="colums.casZalozeni">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Založení </th>
+          <td mat-cell *matCellDef="let element">
+            {{element.casZalozeni ? (element.casZalozeni | toLocalDateTime) : '-'}}
+          </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="colums.typ">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Typ Audit </th>
+          <td mat-cell *matCellDef="let element"> {{ 'enums.batchType.' + element.typ | transloco }} </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="colums.cislo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Označení Audit </th>
+          <td mat-cell *matCellDef="let element" class="text-right"> {{element.cislo}} </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="colums.pocet">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Velikost </th>
+          <td mat-cell *matCellDef="let element" class="text-right"> {{element.pocet}} </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="colums.stav">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Činnost/Stav </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="batch-status-wrapper">
+              <div>
+                {{ 'enums.batchStatus.' + element.stav | transloco }}
+              </div>
+              <div class="px-2">
+                <div *ngIf="element.pozastaveno && !isFinalStatus(element)">
+                  <button mat-icon-button (click)="batchStart(element)">
+                    <mat-icon>play_circle_filled</mat-icon>
+                  </button>
+                </div>
+
+                <div *ngIf="!element.pozastaveno && !isFinalStatus(element)" class="batch-progress">
+                  <mat-progress-spinner mode="determinate" diameter="20" [value]="calculateProgress(element)">
+                  </mat-progress-spinner>
+                </div>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="colums.souvisejiciUdaje">
+          <th mat-header-cell *matHeaderCellDef> Související údaje </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button [routerLink]="rs.createLink(ROUTES.CONFIGURATION)" [queryParams]="{idDavky: element.id, typDavky: element.typ}">Log</button>
+
+            <span *ngIf="isControlData(element)">
+              <button mat-button (click)="displayControlState(element)">Stav kontroly</button>
+            </span>
+
+            <button mat-button [routerLink]="rs.createLink(ROUTES.BATCH_DETAIL, { id: element.id })" [queryParams]="{ type: element.typ }">
+              Detail
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="visibleColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: visibleColumns;"></tr>
+
+      </table>
+      <mat-paginator [length]="tableDto.paging.total" [pageSize]="tableDto.paging.size" [pageIndex]="tableDto.paging.matPage" [pageSizeOptions]="rowPerPage" (page)="onChangePaging($event)" showFirstLastButtons>
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

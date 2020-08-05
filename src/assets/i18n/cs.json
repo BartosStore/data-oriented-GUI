@@ -1,0 +1,39 @@
+{
+  "enums": {
+    "batchType": {
+      "LSF": "Příjem LSF",
+      "ESF": "Příjem EFS",
+      "DUP": "Příjem DUP"
+    },
+    "batchStatus": {
+      "ZALOZENA": "Založeno",
+      "PRIJATA": "Staženo",
+      "FORMALNE_OK": "Formálně zkontrolováno",
+      "KONTROLA_KVALITY": "Kontrola kvality",
+      "PREVZATA": "Zpracováno",
+      "CHYBA_PREDANI": "Chyba předání",
+      "CHYBA_XSD": "Chyba XSD",
+      "CHYBA_POLE": "Chyba pole",
+      "CHYBA_OBSAHU": "Chyba obsahu",
+      "CHYBA_KVALITA": "Chyba"
+    },
+    "jobType": {
+      "importBatchJob": "Příjem LSF",
+      "consolidateListsJob": "Konsolidace formulářů",
+      "saveIntoLsfJob": "Ukládání LSF",
+      "jobFirst": "Job First",
+      "jobSecond": "Job Second",
+      "sendStateJob": "Send State Job"
+    },
+    "jobStatus": {
+      "COMPLETED": "Dokončeno",
+      "FAILED": "Přerušeno"
+    }
+  },
+  "rules": {
+    "required": "Pole {{field}} je povinné.",
+    "matDatepickerParse": "Pole {{field}} není validní datum.",
+    "min": "Pole překročilo minimální hodnotu.",
+    "max": "Pole překročilo maximální hodnotu."
+  }
+}

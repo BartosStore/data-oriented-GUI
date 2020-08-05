@@ -1,0 +1,114 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-container {
+  margin: 25px;
+}
+
+.tables-header {
+  margin: 25px;
+}
+
+.tables-section {
+  margin-top: 25px;
+  display: flex; // pouzit pro layout flex
+  flex-direction: row; // row/column
+  align-items: center; // svisle
+  justify-content: space-around; // vodorovne
+
+  @media (max-width: 716px) {
+    flex-direction: column;
+
+    & > .tables-buttons {
+      margin: 25px 0;
+    }
+  }
+}
+
+.table-container {
+  width: 35%;
+
+  @media (max-width: 716px) {
+    width: 100%;
+  }
+}
+
+table {
+  width: 100%;
+}
+
+.form {
+  margin: 25px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontal-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  @media (max-width: 716px) {
+    flex-direction: column;
+  }
+}
+
+.vertical-form {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+
+  @media (max-width: 716px) {
+    width: 100%;
+  }
+}
+
+.horizontal-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.form-main-label {
+  padding-bottom: 17.5px;
+}
+
+.form-button {
+  width: 100%;
+  display: flex;
+
+  & > button {
+    margin: auto;
+  }
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.hint {
+  margin-top: 25px;
+  padding: 10px;
+  border: 2px solid;
+  border-style: groove;
+  border-radius: 5px;
+}
+
+.form-button {
+  margin-top: 16px;
+}
